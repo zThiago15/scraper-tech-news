@@ -1,6 +1,9 @@
+from tech_news.database import search_news
+
+
 # Requisito 6
 def search_by_title(title):
-    """Seu código deve vir aqui"""
+    return search_news(title)
 
 
 # Requisito 7
