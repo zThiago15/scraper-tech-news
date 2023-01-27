@@ -4,27 +4,33 @@ from tech_news.analyzer.search_engine import (
     search_by_title,
     search_by_tag,
     search_by_category,
+    search_by_date
 )
 from tech_news.analyzer.ratings import top_5_news, top_5_categories
 
 
 def database():
-    data = input('news quantity to register:')
+    data = input('Digite quantas notícias serão buscadas:')
     return create_news(data)
 
 
 def title():
-    title = input('type the news title:')
+    title = input('Digite o título:')
     return search_by_title(title)
 
 
+def date():
+    date = input('Digite a data no formato aaaa-mm-dd:')
+    return search_by_date(date)
+
+
 def tag():
-    tag = input('type the news tag')
+    tag = input('Digite a tag:')
     return search_by_tag(tag)
 
 
 def category():
-    category = input('type the category')
+    category = input('Digite a categoria:')
     return search_by_category(category)
 
 
@@ -37,7 +43,7 @@ def five_top_categories():
 
 
 list_functions = [
-    database, title, tag, category, five_top_news, five_top_categories
+    database, title, date, tag, category, five_top_news, five_top_categories
 ]
 
 
@@ -58,7 +64,7 @@ def analyzer_menu():
 
     if option < 7:
         list_functions[option]()
-    elif option == '7':
+    elif option == 7:
         print('finishing process')
     else:
         print('Opção inválida', file=sys.stderr)
