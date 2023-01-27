@@ -24,3 +24,8 @@ def top_5_news():
 
 # Requisito 11
 def top_5_categories():
+    news = find_news()
+    categories = [new["category"] for new in news]
+    categories_count = Counter(sorted(categories)).most_common()
+    categories_top_five = [category[0] for category in categories_count]
+    return categories_top_five[:5]
