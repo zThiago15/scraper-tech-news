@@ -1,5 +1,5 @@
 import sys
-from tech_news.database import create_news, search_news
+from tech_news.database import create_news
 from tech_news.analyzer.search_engine import (
     search_by_title,
     search_by_tag,
