@@ -4,13 +4,14 @@ from datetime import datetime
 
 # Requisito 6
 def search_by_title(title):
-    return search_news(title)
+    query = {'title', {'$regex': title, '$options': 'i'}}
+    return [(new["title"], new["url"]) for new in search_news(query)]
 
 
 # Requisito 7
 def search_by_date(date: str):
     try:
-        formated_date = datetime(date).strftime('%d/%m/%y')
+        formated_date = datetime.fromisoformat(date).strftime('%d/%m/%y')
         query = {'timestamp': {'$eq': formated_date}}
         return [(new['title'], new['url']) for new in search_news(query)]
 
