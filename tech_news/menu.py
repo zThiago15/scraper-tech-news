@@ -35,11 +35,11 @@ def category():
 
 
 def five_top_news():
-    return top_5_news
+    return top_5_news()
 
 
 def five_top_categories():
-    return top_5_categories
+    return top_5_categories()
 
 
 list_functions = [
@@ -49,22 +49,21 @@ list_functions = [
 
 # Requisito 12
 def analyzer_menu():
-    """Seu código deve vir aqui"""
-    option = int(input(
+    option = input(
         "Selecione uma das opções a seguir:\n"
-        "0 - Popular o banco com notícias;\n"
-        "1 - Buscar notícias por título;\n"
-        "2 - Buscar notícias por data;\n"
-        "3 - Buscar notícias por tag;\n"
-        "4 - Buscar notícias por categoria;\n"
-        "5 - Listar top 5 notícias;\n"
-        "6 - Listar top 5 categorias;\n"
-        "7 - Sair."
-    ))
+        " 0 - Popular o banco com notícias;\n"
+        " 1 - Buscar notícias por título;\n"
+        " 2 - Buscar notícias por data;\n"
+        " 3 - Buscar notícias por tag;\n"
+        " 4 - Buscar notícias por categoria;\n"
+        " 5 - Listar top 5 notícias;\n"
+        " 6 - Listar top 5 categorias;\n"
+        " 7 - Sair."
+    )
 
-    if option < 7:
-        list_functions[option]()
-    elif option == 7:
-        print('finishing process')
+    if option and int(option) < 7:
+        list_functions[int(option)]()
+    elif option == '7':
+        print('Encerrando script\n')
     else:
         print('Opção inválida', file=sys.stderr)
