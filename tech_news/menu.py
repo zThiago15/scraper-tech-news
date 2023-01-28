@@ -1,5 +1,4 @@
 import sys
-from tech_news.database import create_news
 from tech_news.analyzer.search_engine import (
     search_by_title,
     search_by_tag,
@@ -7,11 +6,16 @@ from tech_news.analyzer.search_engine import (
     search_by_date
 )
 from tech_news.analyzer.ratings import top_5_news, top_5_categories
+from tech_news.scraper import get_tech_news
 
 
-def database():
-    data = input('Digite quantas notícias serão buscadas:')
-    return create_news(data)
+def tech_news():
+    amount = input('Digite quantas notícias serão buscadas:')
+
+    if not amount.isdigit():
+        raise ValueError('Erro: valor não numérico')
+
+    return get_tech_news(int(amount))
 
 
 def title():
@@ -43,7 +47,7 @@ def five_top_categories():
 
 
 list_functions = [
-    database, title, date, tag, category, five_top_news, five_top_categories
+    tech_news, title, date, tag, category, five_top_news, five_top_categories
 ]
 
 
@@ -61,9 +65,13 @@ def analyzer_menu():
         " 7 - Sair."
     )
 
+    response = ''
     if option and int(option) < 7:
-        list_functions[int(option)]()
+        response = list_functions[int(option)]()
     elif option == '7':
         print('Encerrando script\n')
     else:
         print('Opção inválida', file=sys.stderr)
+
+    print(response, end="")
+    return response
